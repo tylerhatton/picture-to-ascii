@@ -1,0 +1,29 @@
+service: serverless-image-to-ascii
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  apiGateway:
+    shouldStartNameWithService: true
+
+functions:
+  hello-world:
+    handler: handler.get
+    events:
+      - http:
+          path: /
+          method: get
+  convert-to-ascii:
+    handler: handler.post
+    events:
+      - http:
+          path: /
+          method: post
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+
+plugins:
+  - serverless-python-requirements
