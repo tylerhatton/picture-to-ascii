@@ -38,10 +38,10 @@ def pixels_to_ascii(image):
 
 
 # GET request function
-def get():
+def get(event, context):
     return {
         "statusCode": 200,
-        "body": "Hello from Lambda"
+        "body": json.dumps({"message": "Hello from Lambda"})
     }
 
 
@@ -57,7 +57,7 @@ def post(event, context):
     else:
         return {
             "statusCode": 400,
-            "body": "Invalid image file"
+            "body": json.dumps("Invalid image file")
         }
 
     # attempt to open image
@@ -66,7 +66,7 @@ def post(event, context):
     except:
         return {
             "statusCode": 400,
-            "body": "Invalid image file"
+            "body": json.dumps("Invalid image file")
         }
 
     # convert image to ascii
@@ -75,17 +75,10 @@ def post(event, context):
     # format
     pixel_count = len(new_image_data)
     ascii_image = "\n".join([new_image_data[index:(index+new_width)]
-                            for index in range(0, pixel_count, new_width)])
+                             for index in range(0, pixel_count, new_width)])
 
     # return result
-    response_body = f"""
-      <html>
-        <head><title>ASCII Image</title></head>
-        <body>
-          <p>{ascii_image}</p>
-        </body>
-      </html>
-    """
+    response_body = ascii_image
     return {
         "statusCode": 200,
         "headers": {
