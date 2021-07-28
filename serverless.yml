@@ -21,9 +21,5 @@ functions:
           path: /
           method: post
 
-custom:
-  pythonRequirements:
-    dockerizePip: true
-
 plugins:
   - serverless-python-requirements
