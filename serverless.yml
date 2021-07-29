@@ -3,6 +3,7 @@ service: serverless-image-to-ascii
 provider:
   name: aws
   runtime: python3.8
+  timeout: 15
   lambdaHashingVersion: 20201221
   apiGateway:
     shouldStartNameWithService: true
