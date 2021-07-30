@@ -43,3 +43,5 @@ curl --location --request POST 'your url' \
 ```
 
 9. To remove the function from AWS run ``sls remove``.
+
+![sls remove](images/7.png)
